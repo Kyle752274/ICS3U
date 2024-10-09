@@ -1,4 +1,4 @@
-progname = "Python"
+progname = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in."
 print(progname) # prediction A
 print(progname[0]) # Prediction B
 
@@ -12,9 +12,8 @@ for c in range(len(progname)): # Prediction F
     print(c, progname[c])
 
 # Modify 1
-progname = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in."
 spaces = 0
 for c in progname:
   if c == " ":
     spaces += 1
-print("There are %d spaces in the text." % spaces)    
+print("There are %d spaces in the text." % spaces)
