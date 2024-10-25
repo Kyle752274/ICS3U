@@ -10,3 +10,5 @@ def comp(S):
     elif DNA == 'T':
       Nucleotide += 'A'
   return Nucleotide
+  
+print(comp("ATCAAGGCCTATTCCGGGAAAGG"))
