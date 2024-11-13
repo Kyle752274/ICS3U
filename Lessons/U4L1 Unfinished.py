@@ -18,3 +18,9 @@ for i in range(60):
     
 # Modify 3
 t= turtle.Turtle()
+
+for i in range(80):
+    t.forward(100)
+    t.left(93)  
+
+
