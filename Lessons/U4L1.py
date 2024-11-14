@@ -21,6 +21,14 @@ t= turtle.Turtle()
 
 for i in range(80):
     t.forward(100)
-    t.left(93)  
+    t.left(93)
 
+# Modify 4
+import turtle
 
+t = turtle.Turtle()
+
+t.penup()
+t.goto(100, 100)
+t.pendown()
+t.dot(20, "red")
