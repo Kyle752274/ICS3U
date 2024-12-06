@@ -40,7 +40,7 @@ def render_image(data, pixel_size, rows, cols, rotate_x, rotate_y):
 # Read the image data (pixels and colors)
 def extract_image_data(file_handle, row_count, color_map):
     pixel_data = []
-    for _ in range(row_count):
+    for i in range(row_count):
         row = file_handle.readline()
         sanitized_row = sanitize_input(row)
         pixel_row = []
@@ -56,7 +56,7 @@ def extract_image_data(file_handle, row_count, color_map):
 # Extract color mapping (symbols to colors)
 def extract_color_mapping(file_handle, color_count):
     color_map = []
-    for _ in range(color_count):
+    for i in range(color_count):
         color_info = file_handle.readline()
         sanitized_info = sanitize_input(color_info)
         parts = sanitized_info.split()
@@ -129,3 +129,4 @@ turtle.update()
 
 # Keep the window open
 turtle.done()
+
