@@ -37,7 +37,7 @@ def drawImage(image, pixel_size, num_rows, num_cols, x_dir, y_dir):
       
 def getImageData(file_handler, num_rows, color_mappings):
     image_data = []
-    for _ in range(num_rows):
+    for i in range(num_rows):
         row = file_handler.readline()
         row = modify(row)
         row_colors = []
@@ -51,7 +51,7 @@ def getImageData(file_handler, num_rows, color_mappings):
 
 def getColorData(file_handler, color_count):
     color_mappings = []
-    for _ in range(color_count):
+    for i in range(color_count):
         line = file_handler.readline()
         line = modify(line)
         symbol, _, color = line.split()
