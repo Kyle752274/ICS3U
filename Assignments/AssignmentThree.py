@@ -96,7 +96,7 @@ header_line = file_handler.readline()
 header_line = modify(header_line)
 num_cols, num_rows, color_count = (0, 0, 0)
 if len(header_line.split()) == 4:
-    num_cols, num_rows, color_count, _ = header_line.split()
+    num_cols, num_rows, color_count, temp = header_line.split()
 else:
     num_cols, num_rows, color_count = header_line.split()
 
