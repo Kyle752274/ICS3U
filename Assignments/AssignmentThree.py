@@ -54,7 +54,7 @@ def getColorData(file_handler, color_count):
     for i in range(color_count):
         line = file_handler.readline()
         line = modify(line)
-        symbol, _, color = line.split()
+        symbol, c, color = line.split()
         if symbol == '~':
             symbol = ' '
         color_mappings.append([symbol, color])
