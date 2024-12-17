@@ -1,3 +1,13 @@
+"""
+   Author : Kyle Drnovscek
+   Revison date : 17 December 2024
+   Program : Reading Files and Searching for Data
+   Description : a program to sort a list of 100 people
+     by their names and heights 
+   VARIABLE DICTIONARY :
+   
+"""
+
 def mergeSort(wordList, dateList, leftIndex, rightIndex):
     if leftIndex < rightIndex:
         # Same as (l+r)//2, but avoids overflow
