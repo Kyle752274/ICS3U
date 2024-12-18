@@ -2,42 +2,66 @@
    Author : Kyle Drnovscek
    Revison date : 17 December 2024
    Program : Reading Files and Searching for Data
-   Description : a program to sort a list of 100 people
-     by their names and heights 
+   Description : A program Searches wordle file data based on your input
    VARIABLE DICTIONARY :
-   
+   filename : (string) The name of the file containing Wordle data.
+   fileHandler : (file) File object for reading the Wordle data file.
+   dataLines : (list) List of strings, each representing a line in the Wordle data file.
+   words : (list) List of Wordle words from the file.
+   dates : (list) List of corresponding dates for the Wordle words.
+   original_dates : (list) Copy of the dates list to maintain original order.
+   original_words : (list) Copy of the words list to maintain original order.
+   earliestDate : (int) The earliest date in the dataset, in merged integer format.
+   latestDate : (int) The latest date in the dataset, in merged integer format.
+   valid : (bool) Flag to check if user input is valid.
+   userOption : (string) Stores the user choice for word or date search.
+   userInput : (string) The word entered by the user during a search.
+   year : (string) Year input by the user for a date search.
+   month : (string) Month input by the user for a date search.
+   day : (string) Day input by the user for a date search.
+   mergedDate : (int) A date represented as a merged integer (YYYYMMDD).
+   line_int : (string) Temporary string for building merged date.
+   leftWords, (rightWords) list : Temporary arrays for merge sort, containing word segments.
+   leftDates, (rightDates) list : Temporary arrays for merge sort, containing date segments.
+   i, j, k : (int) Indices for iterating through lists during merge sort.
+
 """
 
+# Function to perform merge sort on the word and date lists
 def mergeSort(wordList, dateList, leftIndex, rightIndex):
     if leftIndex < rightIndex:
-        # Same as (l+r)//2, but avoids overflow
-        # for large l and h
+        # Find the middle index to divide the array
         middleIndex = leftIndex + (rightIndex - leftIndex) // 2
         
-        # Sort first and second halves
+        # Recursively sort the left and right halves
         mergeSort(wordList, dateList, leftIndex, middleIndex)
         mergeSort(wordList, dateList, middleIndex + 1, rightIndex)
+        
+        # Merge the sorted halves
         mergeSortMerge(wordList, dateList, leftIndex, middleIndex, rightIndex)
 
+# Helper function to merge two sorted halves
 def mergeSortMerge(wordList, dateList, leftIndex, middleIndex, rightIndex):
+    # Calculate sizes of temporary arrays
     n1 = middleIndex - leftIndex + 1
     n2 = rightIndex - middleIndex
-    # create temp arrays
-    leftWords = [0] * (n1)
-    rightWords = [0] * (n2)
-    leftDates = [0] * (n1)
-    rightDates = [0] * (n2)
-    # Copy data to temp arrays L[] and R[]
-    for i in range(0, n1):
+
+    # Create temporary arrays for words and dates
+    leftWords = [0] * n1
+    rightWords = [0] * n2
+    leftDates = [0] * n1
+    rightDates = [0] * n2
+
+    # Copy data into temporary arrays
+    for i in range(n1):
         leftWords[i] = wordList[leftIndex + i]
         leftDates[i] = dateList[leftIndex + i]
-    for j in range(0, n2):
+    for j in range(n2):
         rightWords[j] = wordList[middleIndex + 1 + j]
         rightDates[j] = dateList[middleIndex + 1 + j]
-    # Merge the temp arrays back into arr[l..r]
-    i = 0  # Initial index of first subarray
-    j = 0  # Initial index of second subarray
-    k = leftIndex  # Initial index of merged subarray
+
+    # Merge the temporary arrays back into the original list
+    i, j, k = 0, 0, leftIndex
     while i < n1 and j < n2:
         if leftWords[i] <= rightWords[j]:
             wordList[k] = leftWords[i]
@@ -48,21 +72,22 @@ def mergeSortMerge(wordList, dateList, leftIndex, middleIndex, rightIndex):
             dateList[k] = rightDates[j]
             j += 1
         k += 1
-    # Copy the remaining elements of L[], if there
-    # are any
+
+    # Copy any remaining elements from the left array
     while i < n1:
         wordList[k] = leftWords[i]
         dateList[k] = leftDates[i]
         i += 1
         k += 1
-    # Copy the remaining elements of R[], if there
-    # are any
+
+    # Copy any remaining elements from the right array
     while j < n2:
         wordList[k] = rightWords[j]
         dateList[k] = rightDates[j]
         j += 1
         k += 1 
 
+# Function to merge date components into a single integer
 def merge(year, month, day):
     try:
         months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
@@ -73,17 +98,18 @@ def merge(year, month, day):
             month_str = "0" + month_str
         line_int += month_str
         line_int += day
-        return(int(line_int))
+        return int(line_int)
     except:
         return 0
 
+# Function to check if a word exists and return its corresponding date
 def isMatch(A, wordList, dateList):
     index = binarySearch(wordList, A)
     if index != -1:
         return dateList[index]
     return 0
 
-# Binary search function to find the index of x in arr
+# Binary search function to find the index of a value in a sorted array
 def binarySearch(arr, x):
     l, r = 0, len(arr) - 1
     while l <= r:
@@ -174,3 +200,4 @@ elif userOption == "d":
         print("%d is too recent. Our records only go as late as %d. Please enter an earlier date." % (date, latestDate))
     if word:
         print("The word entered on %d was %s." % (date, word))
+
