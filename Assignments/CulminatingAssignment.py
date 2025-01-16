@@ -1,8 +1,8 @@
 """
    Author : Kyle Drnovscek
-   Revision date : 30 October 2024
-   Program : Yearbook assignment
-   Description : Finds the most optimal perimeter for a number inputted.
+   Revision date : 15th January 2025
+   Program : Credit Card Assignment
+   Description : Scans file and determines whether card is expired or should be renewed immediately 
    VARIABLE DICTIONARY :
    file_name (String): Name of the file containing cardholder data.
 file_handle (File): File object used to read the input file.
